@@ -84,8 +84,11 @@ LLaDA-vs-LLaMA-Code/
 │   └── generation_config.json          # Decoding parameters (top-p, temperature, etc.)
 ├── prompts/
 │   └── databricks-dolly-15k_merged.jsonl   # Prompt pool used in the study
+├── LICENSES/
+│   └── Llama-3.1-Community-License.txt  # Meta's license (third-party redistribution)
 ├── requirements.txt
-├── LICENSE
+├── LICENSE                             # MIT — your own code
+├── NOTICE                              # Third-party attribution ("Built with Llama")
 └── README.md                           # ← you are here
 ```
 
