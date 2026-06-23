@@ -18,10 +18,12 @@
 ## 📝 About
 
 This repository accompanies our paper studying how the **generation dynamics** of large language models influence user perception in an interactive chatbot setting.
-
+ 
 Diffusion-based language models (**DLLMs**) now match autoregressive large language models (**ALLMs**) on standard benchmarks and are moving into production. But benchmarks say nothing about how users *experience* these models. Unlike ALLMs, which produce text left-to-right, DLLMs iteratively denoise a noisy text representation into a final output — a visibly distinct process.
-
+ 
 We ran a randomized **within-subjects study (N = 39)** in which participants interacted with a DLLM (**LLaDA-8B Instruct**) and a benchmark-comparable ALLM (**LLaMA 3.1-8B Instruct**) through identical chatbot interfaces, then rated each on trustworthiness, reasoning, and quality. We find the **DLLM elicits lower trust and quality ratings**, while the ALLM is rated more trustworthy and draws more anthropomorphic descriptions. This suggests that comparable benchmark performance does **not** guarantee comparable user trust, and that a DLLM's generation dynamic may slow its adoption.
+
+> **Built with Llama.** This project uses Meta's Llama 3.1-8B Instruct and GSAI-ML's LLaDA-8B Instruct, lightly modified for our interface. See [Model Credits & Licensing](#-model-credits--licensing) for attribution and license terms.
 
 ---
 
@@ -74,23 +76,17 @@ Both models were served through **identically structured Gradio interfaces** to 
 
 ```
 LLaDA-vs-LLaMA-Code/
-├── interface/                  # Gradio chatbot interfaces (DLLM + ALLM serving code)
-│   ├── dllm_app.py
-│   └── allm_app.py
-├── data/
-│   ├── results_dataset.csv     # De-identified participant responses (N = 39)
-│   └── codebook.md             # Variable names, scales, and coding
-├── analysis/
-│   ├── trust_analysis.jasp     # Linear mixed models, t-tests, order-effects models
-│   └── analysis_notes.md       # Maps each test to results in the paper
-├── figures/
-│   ├── make_figures.py         # Regenerates Figures 2–3 from data/
-│   └── *.pdf
+├── llada/                              # Diffusion model (DLLM) — LLaDA-8B Instruct
+│   ├── app.py                          # Gradio chatbot interface
+│   └── main.py                         # Model loading & diffusion generation logic
+├── llama/                              # Autoregressive model (ALLM) — LLaMA 3.1-8B Instruct
+│   ├── config.json                     # Model configuration
+│   └── generation_config.json          # Decoding parameters (top-p, temperature, etc.)
 ├── prompts/
-│   └── filtered_prompts.csv    # Curated Dolly-15k subsample
+│   └── databricks-dolly-15k_merged.jsonl   # Prompt pool used in the study
 ├── requirements.txt
 ├── LICENSE
-└── README.md                   # ← you are here
+└── README.md                           # ← you are here
 ```
 
 ---
@@ -101,20 +97,38 @@ LLaDA-vs-LLaMA-Code/
 # 1. Install dependencies
 pip install -r requirements.txt
 
-# 2. (Optional) Launch a chatbot interface
-python interface/allm_app.py     # or dllm_app.py
-
-# 3. Regenerate figures from the released data
-python figures/make_figures.py
+# 2. Launch the chatbot interface
+python llada/app.py
 ```
-
-**Statistics.** Open `analysis/trust_analysis.jasp` in [JASP](https://jasp-stats.org) (free). Each analysis block corresponds to a result in the paper, documented in `analysis/analysis_notes.md`.
 
 ---
 
 ## 🔒 Ethics & Data
 
-This study involved human participants recruited via Prolific. All participants gave informed written consent. **No personally identifiable information was collected** — only basic demographic items. The released `results_dataset.csv` is fully anonymized and contains only aggregated, de-identified responses used for the analyses in the paper.
+This study involved human participants recruited via Prolific. All participants gave informed written consent, and **no personally identifiable information was collected** — only basic demographic items.
+ 
+In keeping with the terms of participant consent, raw participant-level responses are **not** publicly released; the paper reports aggregated results only. De-identified data may be made available from the authors on reasonable request, subject to ethics approval.
+
+---
+🙏 Model Credits & Licensing
+
+This study uses two open-source models, lightly modified for our interface. Neither model is ours — please credit the original authors.
+
+LLaDA-8B Instruct (DLLM) — GSAI-ML, released under the MIT License.
+Model · Nie et al. (2025), Large Language Diffusion Models, arXiv:2502.09992.
+
+Llama 3.1-8B Instruct (ALLM) — Meta. Built with Llama. Use is governed by the Llama 3.1 Community License, © Meta Platforms, Inc. (a copy is included in this repository). Grattafiori et al. (2024), The Llama 3 Herd of Models, arXiv:2407.21783.
+
+---
+
+##📄 License
+
+The original code in this repository (the chatbot interfaces and study scripts) is released under the MIT License — see LICENSE.
+
+Third-party model components keep their own licenses and are not covered by the MIT grant above:
+
+llama/ configuration files — Llama 3.1 Community License, © Meta Platforms, Inc.
+LLaDA components — MIT License, © GSAI-ML.
 
 ---
 
