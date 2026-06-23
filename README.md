@@ -10,7 +10,6 @@
     <img src="https://img.shields.io/badge/%F0%9F%A4%96%20Code-anonymous.4open.science-grey" />
   </a>
   <img src="https://img.shields.io/badge/%F0%9F%93%9C%20Paper-Under%20Double--Blind%20Review-red" />
-  <img src="https://img.shields.io/badge/%F0%9F%A7%AA%20Study-N%3D39%20Within--Subjects-blue" />
 </p>
 
 ---
