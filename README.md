@@ -69,12 +69,14 @@ Both models were served through **identically structured Gradio interfaces** to 
 
 ---
 
-## 📁 Directory Structure
+## 📁 Repository Structure
 
 > **⚠️ PLACEHOLDER — update to match your actual repo.** This reflects what the paper implies should be here; replace with your real file/folder names.
 
 ```
 LLaDA-vs-LLaMA-Code/
+├── LICENSES/
+│   └── Llama-3.1-Community-License.txt # Meta's license (third-party redistribution)
 ├── llada/                              # Diffusion model (DLLM) — LLaDA-8B Instruct
 │   ├── app.py                          # Gradio chatbot interface
 │   └── main.py                         # Model loading & diffusion generation logic
@@ -83,12 +85,10 @@ LLaDA-vs-LLaMA-Code/
 │   └── generation_config.json          # Decoding parameters (top-p, temperature, etc.)
 ├── prompts/
 │   └── databricks-dolly-15k_merged.jsonl   # Prompt pool used in the study
-├── LICENSES/
-│   └── Llama-3.1-Community-License.txt  # Meta's license (third-party redistribution)
-├── requirements.txt
 ├── LICENSE                             # MIT — your own code
 ├── NOTICE                              # Third-party attribution ("Built with Llama")
-└── README.md                           # ← you are here
+├──README.md                           # ← you are here
+└── requirements.txt
 ```
 
 ---
@@ -112,9 +112,9 @@ This study involved human participants recruited via Prolific. All participants 
 In keeping with the terms of participant consent, raw participant-level responses are **not** publicly released; the paper reports aggregated results only. De-identified data may be made available from the authors on reasonable request, subject to ethics approval.
 
 ---
-🙏 Model Credits & Licensing
+## 🙏 Model Credits & Licensing
 
-This study uses two open-source models, lightly modified for our interface. Neither model is ours — please credit the original authors.
+This study uses two open-source models, lightly modified for our interface.
 
 LLaDA-8B Instruct (DLLM) — GSAI-ML, released under the MIT License.
 Model · Nie et al. (2025), Large Language Diffusion Models, arXiv:2502.09992.
@@ -123,7 +123,7 @@ Llama 3.1-8B Instruct (ALLM) — Meta. Built with Llama. Use is governed by the 
 
 ---
 
-##📄 License
+## 📄 License
 
 The original code in this repository (the chatbot interfaces and study scripts) is released under the MIT License — see LICENSE.
 
