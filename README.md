@@ -71,8 +71,6 @@ Both models were served through **identically structured Gradio interfaces** to 
 
 ## 📁 Repository Structure
 
-> **⚠️ PLACEHOLDER — update to match your actual repo.** This reflects what the paper implies should be here; replace with your real file/folder names.
-
 ```
 LLaDA-vs-LLaMA-Code/
 ├── LICENSES/
